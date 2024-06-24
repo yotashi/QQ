@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculate Remainders and Remainder + 1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .number-link {
+            margin-right: 10px;
+        }
+    </style>
+    <script>
+        // JavaScript function to calculate remainder and remainder + 1, and redirect
+        function calculateAndRedirect(divisor) {
+            const numbers = [270, 608, 99, 226, 225, 928, 273, 85, 221, 479, 243, 212, 384, 233];
+            const results = [];
+
+            numbers.forEach(number => {
+                const remainder = number % divisor;
+                const remainderPlusOne = (number % divisor) + 1;
+                results.push({ number: number, remainder: remainder, remainderPlusOne: remainderPlusOne });
+            });
+
+            // Prepare query string for redirect
+            let queryString = '';
+            results.forEach((result, index) => {
+                queryString += `${index === 0 ? '?' : '&'}number${index}=${result.number}&remainder${index}=${result.remainder}&remainderPlusOne${index}=${result.remainderPlusOne}`;
+            });
+
+            // Redirect to result.html with query string
+            window.location.href = 'result.html' + queryString;
+        }
+    </script>
+</head>
+<body>
+    <h1>Calculate Remainders and Remainder + 1</h1>
+    <p>Enter a divisor:</p>
+    <input type="number" id="divisorInput" />
+    <button onclick="calculateAndRedirect(document.getElementById('divisorInput').value)">Calculate</button>
+</body>
+</html>
